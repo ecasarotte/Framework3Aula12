@@ -1,0 +1,64 @@
+<h1>Cadastrar Funcionário</h1>
+
+<div class="well">
+	<form [formGroup]="formCadastro" (ngSubmit)="atualizar()">
+		<div class="form-group">
+			<label class="mb-1" for="razao_social">Razão Social:</label>
+			<input type="text" class="form-control" id="razao_social" formControlName="razao_social" minlength="5" required>
+			<div *ngIf="formCadastro.get('razao_social').errors && 
+         (formCadastro.get('razao_social.dirty') || 
+         formCadastro.get('razao_social').touched)" class="alert alert-danger mt-2">
+				<div [hidden]="!formCadastro.get('razao_social').errors.required">
+					Digite a razão social.
+				</div>
+				<div [hidden]="!formCadastro.get('razao_social').errors.minlength">
+					A Razão social deve conter ao menos 5 caracteres.
+				</div>
+			</div>
+
+			<div class="form-check mt-4">
+				<input checked="true" type="checkbox" class="form-check-input mr-2" id="ativo" formControlName="ativo">
+				<label class="form-check-label" for="ativo">Ativo</label>
+			</div>
+
+			<div class="mt-4">
+				<label class="mb-1" for="data_cadastro">Data de cadastro:</label>
+				<input type="text" class="form-control" id="data_cadastro" formControlName="data_cadastro" minlength="10"
+					required>
+				<div *ngIf="formCadastro.get('data_cadastro').errors && 
+					(formCadastro.get('data_cadastro.dirty') || 
+					formCadastro.get('data_cadastro').touched)" class="alert alert-danger mt-2">
+					<div [hidden]="!formCadastro.get('data_cadastro').errors.required">
+						Digite a data de cadastro.
+					</div>
+					<div [hidden]="!formCadastro.get('data_cadastro').errors.minlength">
+						A data de cadastro deve conter o padrão dd/MM/aaaa.
+					</div>
+					<div [hidden]="!formCadastro.get('data_cadastro').errors.maxlength">
+						A data de cadastro deve conter o padrão dd/MM/aaaa.
+					</div>
+				</div>
+			</div>
+
+			<div class="mt-4">
+				<label class="mb-1" for="valor_ultima_compra">Valor da ultima compra:</label>
+				<input type="number" class="form-control" id="valor_ultima_compra" formControlName="valor_ultima_compra"
+					required>
+				<div *ngIf="formCadastro.get('valor_ultima_compra').errors && 
+					(formCadastro.get('valor_ultima_compra.dirty') || 
+					formCadastro.get('valor_ultima_compra').touched)" class="alert alert-danger mt-2">
+					<div [hidden]="!formCadastro.get('valor_ultima_compra').errors.required">
+						Informe o valor da ultima compra..
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="form-group d-flex justify-content-around mt-4">
+			<button type="submit" class="btn btn-primary">Atualizar</button>
+			<a [routerLink]="['/']" class="btn btn-secondary">
+				Voltar
+			</a>
+		</div>
+	</form>
+</div>
